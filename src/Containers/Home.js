@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+// import { UndrawBibliophile } from 'react-undraw-illustrations';
 
 const Layout = styled.div`
   min-height: 100vh;
@@ -12,7 +13,6 @@ class Home extends Component {
   render() {
     return (
       <Layout>
-        
       </Layout>
     );
   }
