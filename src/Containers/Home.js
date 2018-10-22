@@ -5,7 +5,8 @@ import styled from 'styled-components';
 const Layout = styled.div`
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 1fr repeat(3, max-content) 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  
 `
 
 class Home extends Component {
@@ -13,6 +14,7 @@ class Home extends Component {
   render() {
     return (
       <Layout>
+
       </Layout>
     );
   }

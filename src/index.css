@@ -1,4 +1,4 @@
-* {
+*, *:after, *:before {
   box-sizing: border-box;
 }
 
@@ -26,6 +26,31 @@ code {
 }
 
 #root {
-  min-height: 150vh;
+  min-height: 100vh;
   background: linear-gradient(to bottom, hsla(220, 100%, 87%, 0.25), hsla(224, 100%, 50%, 0.336));
+}
+
+a {
+  color: black;
+}
+
+.un {
+  display: inline-block;
+}
+
+.un:after {
+  content: '';
+  width: 0px;
+  height: 2px;
+  display: block;
+  background: #6B6CF2;
+  transition: 300ms;
+}
+
+.un:hover:after {
+  width: 100%;
+}
+
+.active {
+  color: #6B6CF2;
 }

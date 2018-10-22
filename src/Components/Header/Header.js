@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NAVBAR = styled.nav`
@@ -10,20 +11,23 @@ const NAVBAR = styled.nav`
   z-index: 10;
   ul {
     list-style: none;
+    width: 85%;
     padding: 0 4rem 0 4rem;
-    margin: 0;
+    margin: 0 auto;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    li {
+    a {
       margin-left: 5rem;
+      text-decoration: none;
     }
     .logo {
       margin-left: 0;
       margin-right: auto;
-      font-size: 3rem;
+      font-size: 4rem;
       font-weight: bold;
+      color: #6B6CF2;
     }
   }
 `
@@ -33,9 +37,10 @@ const Header = (props) => {
     <header>
       <NAVBAR>
         <ul>
-          <li className="logo">Peruse</li>
-          <li>Search</li>
-          <li>About</li>
+          <NavLink exact to='/' className="logo un">Peruse</NavLink>
+          <NavLink exact to='/' className="un">Home</NavLink>
+          <NavLink to='/search' className="un">Search</NavLink>
+          <NavLink to='/about' className="un">About</NavLink>
         </ul>
       </NAVBAR>
     </header>
