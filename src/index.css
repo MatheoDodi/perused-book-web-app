@@ -27,7 +27,7 @@ code {
 
 #root {
   min-height: 100vh;
-  background: linear-gradient(to bottom, hsla(220, 100%, 87%, 0.25), hsla(224, 100%, 50%, 0.336));
+  /* background: linear-gradient(to bottom, hsla(220, 100%, 87%, 0.25), hsla(224, 100%, 50%, 0.336)); */
 }
 
 a {
@@ -54,3 +54,4 @@ a {
 .active {
   color: #6B6CF2;
 }
+

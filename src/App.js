@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Home from './Containers/Home';
+import Search from './Containers/Search';
 import About from './Components/About/About';
 
 
@@ -15,6 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/about' component={About} />
             <Route exact path='/' component={Home} />
+            <Route exact path='/search' component={Search} />
           </Switch>
         </div>
       </Fragment>
