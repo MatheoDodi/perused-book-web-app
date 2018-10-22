@@ -66,9 +66,7 @@ class Search extends Component {
   };
 
   componentDidMount() {
-    getAll()
-    .then(res => this.setState( {allBooks: res, allBooksQueried: res} ))
-    .catch(err => console.log(err));
+     this.setState( {allBooks: this.props.allBooks, allBooksQueried: this.props.allBooks} );
   };
 
   showAllBooksHandler = () => {
