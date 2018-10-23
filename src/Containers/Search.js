@@ -13,11 +13,11 @@ class Search extends Component {
   };
   
   queryBooksHandler = e => {
-    const query = e.target.value.trim();
+    const query = e.target.value;
     this.setState( { query } );
     
-    if (query) {
-      search(query, 20)
+    if (query.trim()) {
+      search(query.trim(), 20)
       .then(books => {
         books.length > 0
         ? this.setState( { showBooks: true, booksFetched: books } )
