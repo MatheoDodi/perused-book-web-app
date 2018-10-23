@@ -4,7 +4,7 @@ This web app allows users to search and keep track of all the books that:
 
 * Have Read
 * Are Reading
-* Will Read
+* Want To Read
 
 Project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
