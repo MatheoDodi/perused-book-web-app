@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { getAll } from '../API/BooksAPI';
 import Book from '../Containers/Book/Book';
+import NoCover from '../assets/images/black.jpg'
 import { UndrawBookLover } from 'react-undraw-illustrations';
+import  { search } from '../API/BooksAPI';
 
 const WRAPPER = styled.div`
   margin: 0 auto;
@@ -15,7 +16,12 @@ const WRAPPER = styled.div`
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   grid-column-gap: 5rem;
-  grid-row-gap: 15rem;
+  grid-row-gap: 20rem;
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 10rem;
+    padding: 2rem 2rem;
+  }
 `
 
 const FORM = styled.form`
@@ -61,44 +67,31 @@ const SearchInfo = styled.div`
 class Search extends Component {
   state = {
     showBooks: false,
-    allBooks: [],
-    allBooksQueried: []
-  };
-
-  componentDidMount() {
-     this.setState( {allBooks: this.props.allBooks, allBooksQueried: this.props.allBooks} );
-  };
-
-  showAllBooksHandler = () => {
-    this.setState(prevState => {
-      return { showBooks: !prevState.showBooks }
-    })
+    booksFetched: [],
+    query: ''
   };
   
-  queryBooksHandler = (e) => {
-    const allBooks = [ ...this.state.allBooks ];
-    const value = e.target.value.toLowerCase().trim();
-    if (value.length > 0) {
-      const queriedBooks = allBooks.filter(book => {
-        return book.title.toLowerCase().trim().includes(value);
+  queryBooksHandler = e => {
+    const query = e.target.value;
+    this.setState( { query } );
+    
+    if (query) {
+      search(query.trim(), 50)
+      .then(books => {
+        books.length > 0
+        ? this.setState( { showBooks: true, booksFetched: books } )
+        : this.setState( { showBooks: true, booksFetched: [] } );
       });
-      this.setState({ 
-        showBooks: true,
-        allBooksQueried: queriedBooks
-      })
-    } else {
-      this.setState({
-        showBooks: false,
-        allBooksQueried: this.state.allBooks
-      })
-    }
+    } else this.setState( { booksFetched: [], showBooks: false } )
   }
+
 
   render() {
     return (
       <Fragment>
         <FORM>
           <input
+           value={this.state.query}
            placeholder='Search Your Book'
            onChange={this.queryBooksHandler} />
         </FORM>
@@ -106,25 +99,21 @@ class Search extends Component {
           {
             this.state.showBooks
             ? <Fragment>
-              {this.state.allBooksQueried.map(book => {
+              {this.state.booksFetched.map(book => {
                 return (
                 <Book 
-                  image={book.imageLinks.smallThumbnail}
                   key={book.id}
-                  description={book.description}
+                  image={book.imageLinks ? book.imageLinks.thumbnail : NoCover}
+                  author={book.authors ? book.authors[0] : 'Unknown Author'}
                   title={book.title}
+                  id={book.id}
                   />
                 )
                 })}
-                <SearchInfo>
-                  <p>
-                    <button onClick={this.showAllBooksHandler}>Hide All</button>
-                  </p>
-                </SearchInfo>
               </Fragment>
             : <SearchInfo>
                 <UndrawBookLover />
-                <p>Search for your favorite books or click to <button onClick={this.showAllBooksHandler} >Show All</button></p>
+                <p>Search for your favorite books.</p>
               </SearchInfo>
           }
         </WRAPPER>

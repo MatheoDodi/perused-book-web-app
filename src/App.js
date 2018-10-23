@@ -10,28 +10,39 @@ import About from './Components/About/About';
 
 class App extends Component {
   state= {
-    allBooks: []
+    allBooks: [],
+    currReading: [],
+    willRead: [],
+    haveRead: []
   }
 
-  componentDidMount() {
-    getAll()
-    .then(res => this.setState( {allBooks: res} ))
-    .catch(err => console.log(err));
-  };
+  // componentDidMount() {
+  //   getAll()
+  //   .then(res => this.setState( {allBooks: res} ))
+  //   .catch(err => console.log(err));
+  // };
 
   render() {
 
-    const HomeWithProps = (props) => {
-      return (
-        <Home {...props} allBooks={this.state.allBooks} />
-      )
-    }
+    // const HomeWithProps = (props) => {
+    //   return (
+    //     <Home {...props}
+    //      allBooks={this.state.allBooks}
+    //      currReading={this.state.currReading}
+    //      willRead={this.state.willRead}
+    //      haveRead={this.state.haveRead} />
+    //   )
+    // }
 
-    const SearchWithProps = (props) => {
-      return (
-        <Search {...props} allBooks={this.state.allBooks} />
-      )
-    }
+    // const SearchWithProps = (props) => {
+    //   return (
+    //     <Search {...props}
+    //      allBooks={this.state.allBooks}
+    //      currReading={this.state.currReading}
+    //      willRead={this.state.willRead}
+    //      haveRead={this.state.haveRead} />
+    //   )
+    // }
 
     return (
       <Fragment>
@@ -39,8 +50,8 @@ class App extends Component {
         <div style={{padding: "85px 0"}}>
           <Switch>
             <Route exact path='/about' component={About} />
-            <Route exact path='/' component={HomeWithProps} />
-            <Route exact path='/search' component={SearchWithProps} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/search' component={Search} />
           </Switch>
         </div>
       </Fragment>

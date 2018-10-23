@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { UndrawProductTour } from  'react-undraw-illustrations';
-import Book from './Book/Book';
+// import Book from './Book/Book';
 
 const BookShelfDiv = styled.div`
   margin: 0 auto 2.5rem auto;
@@ -28,14 +28,8 @@ const BookShelfDiv = styled.div`
 `
 
 class Home extends Component {
-  state = {
-    currReading: [],
-    haveRead: [],
-    willRead: []
-  }
 
   render() {
-    const { allBooks } = this.props;
 
     return (
       <Fragment>
@@ -43,16 +37,6 @@ class Home extends Component {
           <div className="test">
             <h1>Currently Reading</h1>
           </div>
-            {allBooks.map(book => {
-                return (
-                <Book 
-                  image={book.imageLinks.smallThumbnail}
-                  key={book.id}
-                  description={book.description}
-                  title={book.title}
-                  />
-                )
-                })}
         </BookShelfDiv>
         <BookShelfDiv>
           <UndrawProductTour />
