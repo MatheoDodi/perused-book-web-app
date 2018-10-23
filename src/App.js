@@ -17,11 +17,9 @@ class App extends Component {
   }
 
   changeShelvesHandler = (book, shelf) => {
-    console.log(book, shelf);
     update(book, shelf)
     .then(res => getAll()
     .then(res => {
-      console.log(res);
       const { currentlyReading, wantToRead, read } = initializeState(res);
       this.setState({ allBooks: res, currentlyReading, wantToRead, read });
     }));

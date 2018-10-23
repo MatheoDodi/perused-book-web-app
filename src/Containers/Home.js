@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { BookShelfDiv } from '../Styles/Styles';
-import NoCover from '../assets/images/black.jpg';
 import Book from './Book/Book';
 import { UndrawFilingSystem, UndrawUpvote, UndrawSpecs } from 'react-undraw-illustrations';
 
 class Home extends Component {
 
   render() {
+    const infoPar = <p>Seems like you haven't added any books yet.</p>
+
     return (
       <Fragment>
         <BookShelfDiv>
@@ -14,18 +15,14 @@ class Home extends Component {
           {this.props.currentlyReading.length === 0 
           ? <Fragment>
               <UndrawFilingSystem class="unDraw" />
-              <p>Seems like you haven't added any books yet.</p>
+              {infoPar}
             </Fragment>
           : this.props.currentlyReading.map(book => {
             return (
               <Book 
-                book={book}
+                {...book}
                 key={book.id}
-                image={book.imageLinks ? book.imageLinks.thumbnail : NoCover}
-                author={book.authors ? book.authors[0] : 'Unknown Author'}
-                title={book.title}
-                id={book.id}
-                changeShelves={(shelf) => this.props.changeShelves(book, shelf)}
+                changeShelves={(shelf, path) => this.props.changeShelves(book, shelf, path)}
               />
             )
         })}
@@ -35,17 +32,13 @@ class Home extends Component {
           {this.props.wantToRead.length === 0 
           ? <Fragment>
               <UndrawUpvote class="unDraw" />
-              <p>Seems like you haven't added any books yet.</p>
+              {infoPar}
             </Fragment>
           : this.props.wantToRead.map(book => {
             return (
               <Book 
-                book={book}
+                {...book}
                 key={book.id}
-                image={book.imageLinks ? book.imageLinks.thumbnail : NoCover}
-                author={book.authors ? book.authors[0] : 'Unknown Author'}
-                title={book.title}
-                id={book.id}
                 changeShelves={(shelf) => this.props.changeShelves(book, shelf)}
               />
             )
@@ -56,17 +49,13 @@ class Home extends Component {
           {this.props.read.length === 0 
           ? <Fragment>
               <UndrawSpecs class="unDraw" />
-              <p>Seems like you haven't added any books yet.</p>
+              {infoPar}
             </Fragment>
           : this.props.read.map(book => {
             return (
               <Book 
-                book={book}
+                {...book}
                 key={book.id}
-                image={book.imageLinks ? book.imageLinks.thumbnail : NoCover}
-                author={book.authors ? book.authors[0] : 'Unknown Author'}
-                title={book.title}
-                id={book.id}
                 changeShelves={(shelf) => this.props.changeShelves(book, shelf)}
               />
             )

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Form, SearchWrapper, SearchInfo } from '../Styles/Styles';
 import Book from '../Containers/Book/Book';
-import NoCover from '../assets/images/black.jpg'
 import { UndrawBookLover } from 'react-undraw-illustrations';
 import  { search } from '../API/BooksAPI';
 
@@ -49,12 +48,8 @@ class Search extends Component {
                 })
                 return (
                 <Book
-                  book={ book }
+                  {...book} 
                   key={book.id}
-                  image={book.imageLinks ? book.imageLinks.thumbnail : NoCover}
-                  author={book.authors ? book.authors[0] : 'Unknown Author'}
-                  title={book.title}
-                  id={book.id}
                   changeShelves={(shelf) => this.props.changeShelves(book, shelf)}
                   />
                 )

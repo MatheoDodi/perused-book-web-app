@@ -1,7 +1,7 @@
 import React from 'react';
 import { SelectWrapper } from '../../Styles/Styles';
 
-const ShelfChanger = ({ changeShelves, shelf, click, showShelfChanger }) => {
+const ShelfChanger = ({ changeShelves, shelf, click, showShelfChanger}) => {
   if (!shelf) {
     shelf = 'none';
   }
