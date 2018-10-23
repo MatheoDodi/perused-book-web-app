@@ -72,11 +72,11 @@ class Search extends Component {
   };
   
   queryBooksHandler = e => {
-    const query = e.target.value;
+    const query = e.target.value.trim();
     this.setState( { query } );
     
     if (query) {
-      search(query.trim(), 50)
+      search(query, 20)
       .then(books => {
         books.length > 0
         ? this.setState( { showBooks: true, booksFetched: books } )
@@ -100,13 +100,20 @@ class Search extends Component {
             this.state.showBooks
             ? <Fragment>
               {this.state.booksFetched.map(book => {
+                this.props.allBooks.forEach(books => {
+                  if (books.id === book.id) {
+                    book.shelf = books.shelf;
+                  }
+                })
                 return (
-                <Book 
+                <Book
+                  book={ book }
                   key={book.id}
                   image={book.imageLinks ? book.imageLinks.thumbnail : NoCover}
                   author={book.authors ? book.authors[0] : 'Unknown Author'}
                   title={book.title}
                   id={book.id}
+                  changeShelves={(shelf) => this.props.changeShelves(book, shelf)}
                   />
                 )
                 })}

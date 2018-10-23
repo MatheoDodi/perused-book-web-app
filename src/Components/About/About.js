@@ -14,6 +14,13 @@ const WRAPPER = styled.div`
   grid-row-gap: 200px;
   grid-column-gap: 2.5rem;
   align-items: center;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    grid-row-gap: 75px;
+    .search {
+      grid-row: 3 / 4;
+    }
+  }
   span {
     font-weight: bold;
     color: #6B6CF2;
@@ -29,7 +36,7 @@ const About = () => {
       <UndrawBibliophile />
       <p><span>Peruse</span> is a Web App that helps you keep track of your books. Not only the ones you own, but the ones you're thinking of getting, as well.</p>
       <p>You can search the book you're interested in, and you can add it to your <em>Currently Reading</em>, <em>Will Read</em>, or <em>Already Read</em> collection.</p>
-      <UndrawSearch />
+      <UndrawSearch class="search"/>
       <UndrawOnline />
       <p>You can access your collections anywhere, anytime. Future updates will be implementing the ability to share the book you're currently reading with all you Social Media buddies!</p>
     </WRAPPER>

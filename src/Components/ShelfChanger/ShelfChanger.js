@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SelectWrapper = styled.div`
-      width: 18%;
+      width: 60%;
       border-radius: 5px;
       overflow: hidden;
       background: #6A6FEA;
       margin: 1rem;
-      box-shadow: -2px 3px 5px rgba(0, 0, 0, .25);
+      box-shadow: -3px 3px 8px rgba(0, 0, 0, .35);
+      transition: all 0.5s;
       &:hover {
         cursor: pointer;
       }
       @media (max-width: 500px) {
-        width: 34%;
+        width: 100%;
       }
       select {
       padding: 5px 8px;
@@ -23,26 +24,33 @@ const SelectWrapper = styled.div`
       background-image: none;
       -webkit-appearance: none;
       color: white;
-      font-size: 3rem;
+      font-size: 1.5rem;
       font-weight: bold;
+      text-align: center;
+      @media (max-width: 500px) {
+        font-size: 1rem;
+      }
       &:hover {
         cursor: pointer;
       }
     }
     select:focus {
       outline: none;
-}
+    }
 `
 
-const ShelfChanger = (props) => {
+const ShelfChanger = ({ changeShelves, shelf, click, showShelfChanger }) => {
+  if (!shelf) {
+    shelf = 'none';
+  }
   return (
-    <SelectWrapper>
-      <select>
-        <option defaultValue hidden>+</option>
-        <option disabled>Add to...</option>
-        <option>Reading</option>
-        <option>Will Read</option>
-        <option>Read</option>
+    <SelectWrapper shelf={shelf} showShelfChanger={showShelfChanger} onClick={click}>
+      <select defaultValue={shelf} onChange={(e) => changeShelves(e.target.value)} >
+        <option disabled>Move to...</option>
+        <option value="currentlyReading">Now Reading</option>
+        <option value="wantToRead">Want To Read</option>
+        <option value="read">Read</option>
+        <option value="none">None</option>
       </select>
     </SelectWrapper>
   )

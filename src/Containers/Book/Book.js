@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import ShelftChanger from '../../Components/ShelfChanger/ShelfChanger';
 
 const BookCard = styled.div`
-  width: 200px;
+  display: grid;
+  justify-items: center;
+  width: 210px;
   border-radius: 15px;
   height: max-content;
   transition: all .25s;
-  box-shadow: 0 4px 8px 4px rgba(0, 0, 0, .3);
-  background: linear-gradient(to bottom, rgba(106, 110, 234, 0.459), rgba(250, 250, 250, 0.459));
   &:hover {
       transform: scale(1.085);
-      box-shadow: 0 6px 10px 5px rgba(0 , 0, 0, .15);
       color: #6B6CF2;
   }
   h5 {
@@ -23,7 +22,7 @@ const BookCard = styled.div`
     }
   }
   @media (max-width: 500px) {
-    width: 110px;
+    width: 120px;
   }
 `
 
@@ -38,6 +37,11 @@ const BookCover = styled.div`
     margin-bottom: 2rem;
     display: flex;
     align-items: flex-end;
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, .3);
+    transition: all .25s;
+    &:hover {
+      box-shadow: 0 6px 10px 5px rgba(0 , 0, 0, .15);
+    }
     @media (max-width: 500px) {
       height: 160px;
       width: 110px;
@@ -49,6 +53,7 @@ const BookCover = styled.div`
       transition: all .25s;
       &:hover {
         transform: scale(1.1);
+
       }
     }
   }
@@ -56,16 +61,26 @@ const BookCover = styled.div`
 
 class Book extends Component {
   state = {
-    showSelfChanger : false
+    showShelfChanger : false
+  }
+
+  showShelfChangerHandler = () => {
+    this.setState( prevState => {
+      return { showShelfChanger: !prevState.showShelfChanger}
+    } )
   }
 
   render() {
-    const { image, author, title, id } = this.props;
+    const { book, image, author, title, changeShelves } = this.props;
 
     return (
       <BookCard>
         <BookCover imageURL={image}>
-          <ShelftChanger bookID={id} />
+          <ShelftChanger 
+            changeShelves={(shelf) => changeShelves(shelf)} 
+            shelf={book.shelf}
+            click={this.showShelfChangerHandler}
+            showShelfChanger={this.state.showShelfChanger} />
         </BookCover>
         <h5>{title} <br /> <span>{author}</span></h5>
 

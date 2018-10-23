@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const NAVBAR = styled.nav`
-  height: 65px;
+const Navbar = styled.nav`
+  height: 67.5px;
   background-color: #F9FCFF;
   width: 100%;
   box-shadow: 0px 5px 8px rgba(0, 0, 0, .1);
@@ -12,7 +12,7 @@ const NAVBAR = styled.nav`
   ul {
     list-style: none;
     width: 85%;
-    padding: 0 4rem 0 4rem;
+    padding: 0 4rem;
     margin: 0 auto;
     height: 100%;
     display: flex;
@@ -35,14 +35,14 @@ const NAVBAR = styled.nav`
 const Header = (props) => {
   return (
     <header>
-      <NAVBAR>
+      <Navbar>
         <ul>
-          <NavLink exact to='/' className="logo un">Peruse</NavLink>
+          <NavLink exact to='/' className="logo">Peruse</NavLink>
           <NavLink exact to='/' className="un">Home</NavLink>
           <NavLink to='/search' className="un">Search</NavLink>
           <NavLink to='/about' className="un">About</NavLink>
         </ul>
-      </NAVBAR>
+      </Navbar>
     </header>
   )
 }
