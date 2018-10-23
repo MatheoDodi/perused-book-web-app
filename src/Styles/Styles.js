@@ -63,7 +63,7 @@ export const AboutWrapper = styled.div`
 `
 
 export const SelectWrapper = styled.div`
-  width: 60%;
+  width: 90%;
   border-radius: 5px;
   overflow: hidden;
   background: #6A6FEA;
@@ -77,7 +77,7 @@ export const SelectWrapper = styled.div`
     width: 100%;
   }
   select {
-  padding: 5px 8px;
+  padding: 5px;
   width: 130%;
   border: none;
   box-shadow: none;
