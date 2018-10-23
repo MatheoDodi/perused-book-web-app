@@ -6,8 +6,11 @@ import Home from './Containers/Home';
 import Search from './Containers/Search';
 import About from './Components/About/About';
 import { initializeState } from './Components/initializeState';
+import styled from 'styled-components';
 
-
+const MainContainer = styled.div`
+  padding: 85px 0 60px 0;
+`
 
 class App extends Component {
   state= {
@@ -60,13 +63,13 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <div style={{padding: "85px 0"}}>
+        <MainContainer>
           <Switch>
             <Route exact path='/about' component={About} />
             <Route exact path='/' component={HomeWithProps} />
             <Route exact path='/search' component={SearchWithProps} />
           </Switch>
-        </div>
+        </MainContainer>
       </Fragment>
     );
   }
