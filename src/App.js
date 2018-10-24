@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { getAll, update } from './API/BooksAPI';
 import Header from './Components/Header/Header';
 import Home from './Containers/Home';
@@ -13,15 +13,19 @@ class App extends Component {
     allBooks: [],
     currentlyReading: [],
     wantToRead: [],
-    read: []
+    read: [],
+    location: ''
   }
 
-  changeShelvesHandler = (book, shelf) => {
+  changeShelvesHandler = (book, shelf, path) => {
     update(book, shelf)
     .then(res => getAll()
     .then(res => {
       const { currentlyReading, wantToRead, read } = initializeState(res);
       this.setState({ allBooks: res, currentlyReading, wantToRead, read });
+      if (path === '/search') {
+        this.props.history.push('/');
+      }
     }));
   }
 
@@ -35,6 +39,7 @@ class App extends Component {
 
   render() {
 
+
     const HomeWithProps = (props) => {
       return (
         <Home {...props}
@@ -42,7 +47,7 @@ class App extends Component {
          currentlyReading={this.state.currentlyReading}
          wantToRead={this.state.wantToRead}
          read={this.state.read}
-         changeShelves={(book, shelf) => this.changeShelvesHandler(book, shelf)} />
+         changeShelves={(book, shelf, path) => this.changeShelvesHandler(book, shelf, path)} />
       )
     }
 
@@ -50,7 +55,7 @@ class App extends Component {
       return (
         <Search {...props}
          allBooks={this.state.allBooks}
-         changeShelves={(id, shelf) => this.changeShelvesHandler(id, shelf)} />
+         changeShelves={(id, shelf, path) => this.changeShelvesHandler(id, shelf, path)} />
       )
     }
 
@@ -69,4 +74,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

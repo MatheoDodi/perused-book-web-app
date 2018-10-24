@@ -1,13 +1,14 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { SelectWrapper } from '../../Styles/Styles';
 
-const ShelfChanger = ({ changeShelves, shelf, click, showShelfChanger}) => {
+const ShelfChanger = ({ changeShelves, shelf, click, location}) => {
   if (!shelf) {
     shelf = 'none';
   }
   return (
-    <SelectWrapper shelf={shelf} showShelfChanger={showShelfChanger} onClick={click}>
-      <select defaultValue={shelf} onChange={(e) => changeShelves(e.target.value)} >
+    <SelectWrapper shelf={shelf} onClick={click}>
+      <select defaultValue={shelf} onChange={(e) => changeShelves(e.target.value, location.pathname)} >
         <option disabled>Move to...</option>
         <option value="currentlyReading">Now Reading</option>
         <option value="wantToRead">Want To Read</option>
@@ -18,4 +19,4 @@ const ShelfChanger = ({ changeShelves, shelf, click, showShelfChanger}) => {
   )
 }
 
-export default ShelfChanger;
+export default withRouter(ShelfChanger);

@@ -4,15 +4,7 @@ import ShelftChanger from '../../Components/ShelfChanger/ShelfChanger';
 import NoCover from '../../assets/images/black.jpg';
 
 class Book extends Component {
-  state = {
-    showShelfChanger : false
-  }
 
-  showShelfChangerHandler = () => {
-    this.setState( prevState => {
-      return { showShelfChanger: !prevState.showShelfChanger}
-    } )
-  }
 
   render() {
     const { shelf, authors, title, imageLinks, changeShelves } = this.props;
@@ -21,10 +13,8 @@ class Book extends Component {
       <BookCard>
         <BookCover imageURL={imageLinks ? imageLinks.thumbnail : NoCover}>
           <ShelftChanger 
-            changeShelves={(shelf) => changeShelves(shelf)} 
-            shelf={shelf}
-            click={this.showShelfChangerHandler}
-            showShelfChanger={this.state.showShelfChanger} />
+            changeShelves={(shelf, path) => changeShelves(shelf, path)} 
+            shelf={shelf} />
         </BookCover>
         <h5>{title} <br /> <span>{authors ? authors[0] : 'Unknown Author'}</span></h5>
 

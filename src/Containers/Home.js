@@ -39,7 +39,7 @@ class Home extends Component {
               <Book 
                 {...book}
                 key={book.id}
-                changeShelves={(shelf) => this.props.changeShelves(book, shelf)}
+                changeShelves={(shelf, path) => this.props.changeShelves(book, shelf, path)}
               />
             )
         })}
@@ -56,7 +56,7 @@ class Home extends Component {
               <Book 
                 {...book}
                 key={book.id}
-                changeShelves={(shelf) => this.props.changeShelves(book, shelf)}
+                changeShelves={(shelf, path) => this.props.changeShelves(book, shelf, path)}
               />
             )
         })}

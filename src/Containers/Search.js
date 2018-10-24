@@ -9,7 +9,7 @@ class Search extends Component {
   state = {
     showBooks: false,
     booksFetched: [],
-    query: ''
+    query: '',
   };
   
   queryBooksHandler = e => {
@@ -50,7 +50,7 @@ class Search extends Component {
                 <Book
                   {...book} 
                   key={book.id}
-                  changeShelves={(shelf) => this.props.changeShelves(book, shelf)}
+                  changeShelves={(shelf, path) => this.props.changeShelves(book, shelf, path)}
                   />
                 )
                 })}
