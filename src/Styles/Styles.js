@@ -11,6 +11,9 @@ export const Navbar = styled.nav`
   box-shadow: 0px 5px 8px rgba(0, 0, 0, .1);
   position: fixed;
   z-index: 10;
+  @media (max-width: 800px) {
+    height: 75px;
+  }
   ul {
     list-style: none;
     width: 85%;
@@ -20,9 +23,18 @@ export const Navbar = styled.nav`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    @media (max-width: 800px) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 0;
+      justify-items: center;
+    }
     a {
       margin-left: 5rem;
       text-decoration: none;
+      @media (max-width: 800px) {
+        margin: 0;
+      }
     }
     .logo {
       margin-left: 0;
@@ -30,6 +42,11 @@ export const Navbar = styled.nav`
       font-size: 4rem;
       font-weight: bold;
       color: #6B6CF2;
+      @media (max-width: 800px) {
+        grid-column: 1 / 4;
+        margin: 0;
+        font-size: 3rem;
+      }
     }
   }
 `
